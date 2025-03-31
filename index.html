@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook - Sesión 4: Taller Visiones del Futuro (Preparatoria)</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .header {
+            background-color: #2196F3; /* Blue accent color */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+         .header h2 {
+            margin: 5px 0 0;
+            font-size: 1.3em;
+            font-weight: normal;
+         }
+        .time-title {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .banner {
+            background-color: #2196F3; /* Blue accent color */
+            color: white;
+            padding: 12px 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .banner:hover {
+            background-color: #1976D2; /* Darker blue on hover */
+        }
+        .banner .title {
+            font-size: 1.3em;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            padding-top: 8px;
+            font-weight: normal;
+        }
+        .content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            border-radius: 0 0 5px 5px;
+            background-color: #f9f9f9;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .dialogue {
+            background-color: #e3f2fd; /* Light blue background for dialogue */
+            border: 1px solid #bbdefb; /* Lighter blue border */
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            text-align: left; /* Adjusted alignment */
+            font-style: normal; /* Removed italics for main dialogue */
+            position: relative;
+        }
+        .dialogue::before { /* Optional: Add a small quote icon or similar */
+            /* content: '💬'; */
+            /* position: absolute; */
+            /* left: 10px; */
+            /* top: 10px; */
+            /* font-size: 1.2em; */
+        }
+        .dialogue i { /* Style for instructions within dialogue */
+           display: block;
+           margin-top: 8px;
+           color: #555;
+           font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 8px 12px;
+            margin-left: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            text-align: left;
+        }
+         td:first-child {
+            font-weight: bold;
+             width: 40%; /* Adjust width as needed */
+         }
+        ul, ol {
+            margin-left: 20px;
+            padding-left: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+             color: #1976D2; /* Darker blue for emphasis */
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+    <script>
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            // Since the base time for this session IS 40 minutes, we show all activities for 40min.
+            // No complex hiding logic needed for this specific session.
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+        }
+
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        // Ensure activities are shown correctly on initial load based on default dropdown value
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActivities(); // Call once on load
+             // Set default display to none for all content sections
+             var contents = document.querySelectorAll('.content');
+             contents.forEach(function(content) {
+                 content.style.display = 'none';
+             });
+        });
+    </script>
+</head>
+<body>
+
+<div class="header">
+    <h1>Playbook - Taller: Visiones del Futuro: Diseñando con IA Generativa (1º de Preparatoria)</h1>
+    <h2>Sesión 4: ¡Impacto Futuro, Prototipo IA y Lanzamiento Visionario!</h2>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="40" selected>40 minutos</option>
+            <!-- No other time options needed as per the PDF for this session -->
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 40 minutos</h2>
+
+<!-- ------------------------------------------------- Espacio para De un Vistazo --------------------------------------------------------- -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('de_un_vistazo')">
+        <div class="title">🎯 De un Vistazo y Preparación Previa 📋</div>
+        <div class="subtitle">Resumen rápido de la sesión y lo que necesitas preparar.</div>
+    </div>
+    <div id="de_un_vistazo" class="content">
+        <table>
+            <tr>
+                <td>
+                    <strong>Objetivos:</strong>
+                    <ul>
+                        <li>Recordar los T-Bars detallados de la sesión anterior.</li>
+                        <li>Táctica 5 (Big Beats): Crear y compartir la narrativa del impacto MÁXIMO de la idea, enfatizando el rol transformador de la IA/Automatización.</li>
+                        <li>Táctica 7 (Prototipado Conceptual IA): Planificar cómo se usaría la IA Generativa para crear un prototipo conceptual simple que demuestre la idea.</li>
+                        <li>Táctica 6 (Like, Wish, Wonder - Cierre): Presentar la visión completa (Impacto + Prototipo Conceptual) y recibir/dar retroalimentación final.</li>
+                        <li>Cerrar el taller inspirando la continuación del desarrollo de las ideas.</li>
+                    </ul>
+                    <strong>Tácticas Principales:</strong> Big Beats (Adaptado: Historia de Impacto Futuro con IA), Prototipado Conceptual (con IA Generativa), Like, Wish, Wonder (Lanzamiento Visionario).<br><br>
+                    <strong>Entregable Clave:</strong> Historia de Impacto "Big Beats" y Plan de Prototipado Conceptual con IA por equipo. Notas LWW recibidas.
+                </td>
+                <td>
+                    <strong>Materiales Específicos:</strong>
+                    <ul>
+                        <li>Proyector/Pantalla, Computadora, Internet.</li>
+                        <li>Acceso a tablero Miro (o similar) con los T-Bars de la Sesión 3 visibles y espacio para Big Beats y Prototipado Conceptual.</li>
+                        <li>Presentación de diapositivas (Láminas 18-23 detalladas abajo).</li>
+                        <li>Notas adhesivas pequeñas (físicas o digitales) para LWW.</li>
+                        <li>Lista corta de herramientas IA Generativa (recordatorio).</li>
+                        <li>Ejemplo "MentorVivo" para Big Beats y Prototipado Conceptual (Láminas 20 y 22 - renombrado de Eco-Conserje a MentorVivo).</li>
+                    </ul>
+                     <strong>Preparación Previa para ESTA Sesión:</strong>
+                    <ol>
+                        <li><strong>Presentación Lista:</strong> Tener listas las Diapositivas 18 a 23. Preparar los ejemplos de Big Beats y Prototipado Conceptual IA para el ejemplo "MentorVivo".</li>
+                        <li><strong>Espacio de Trabajo:</strong> Equipos deben tener acceso a sus T-Bars. Preparar espacio nuevo en Miro (o físico) para Big Beats y Prototipado IA.</li>
+                        <li><strong>Material Retro LWW:</strong> Tener listas notas adhesivas (físicas/digitales) y la Diapositiva 24 con instrucciones LWW.</li>
+                        <li><strong>Lista Herramientas IA:</strong> Tener a mano la lista/lámina de herramientas IA por si surgen dudas durante el prototipado.</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- ------------------------------------------------- Espacio para Actividades --------------------------------------------------------- -->
+
+<!-- Actividad 1 -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('repaso_conexion_s4')">
+        <div class="title">🔄 Actividad 1: Repaso y Conexión ⏰ Tiempo: 3 minutos</div>
+        <div class="subtitle">Recordar los T-Bars y conectar con las actividades finales: contar la historia épica, prototipar con IA y lanzar la visión.</div>
+    </div>
+    <div id="repaso_conexion_s4" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (1 minuto):</strong> Repaso Sesión 3 y T-Bars. Proyectar Diapositiva 18 (Título e Imagen).</td>
+                <td class="dialogue">
+                    "¡Creadores del mañana, bienvenidos a la sesión final! La última vez, dimos un paso gigante: conectamos nuestras ideas Mash-Up con el corazón humano usando Human Truths y las detallamos a fondo en nuestros <strong>T-Bars</strong>. ¡Crearon perfiles completos de sus visiones del futuro, mostrando no solo cómo funcionarían, sino por qué importarían!"
+                </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 2 (2 minutos):</strong> Introducir Sesión 4 y Tácticas Finales. Proyectar Diapositiva 18 (Texto).</td>
+                <td class="dialogue">
+                     "¡Hoy es el gran final de nuestra receta 'Visiones del Futuro'! Vamos a hacer tres cosas emocionantes para llevar sus ideas al siguiente nivel:"
+                     <ol>
+                         <li><strong>Contaremos la historia del IMPACTO ÉPICO</strong> que tendrán sus ideas usando la Táctica 5: <strong>'Big Beats'</strong>. ¡Vamos a pintar el futuro que crearán!</li>
+                         <li><strong>Planearemos cómo usar la IA Generativa</strong> para hacer un <strong>prototipo conceptual rápido</strong> de su idea con la Táctica 7. ¡Haremos tangible lo intangible!</li>
+                         <li><strong>¡Y haremos el Lanzamiento Visionario final</strong> de nuestros proyectos usando la Táctica 6 (Like, Wish, Wonder) para recibir feedback y celebrar nuestras creaciones!</li>
+                     </ol>
+                     "Pasamos al Nivel 5, 6 y 7: ¡Impacto, Prototipo y Lanzamiento! ¡Es hora de mostrarle al mundo el futuro que han diseñado!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 2 -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('big_beats')">
+        <div class="title">💥 Actividad 2: Táctica 5: Big Beats (Historia de Impacto Futuro con IA) ⏰ Tiempo: 15 minutos</div>
+        <div class="subtitle">Crear una narrativa épica del impacto máximo de la idea, enfatizando el rol transformador de la IA/Automatización.</div>
+    </div>
+    <div id="big_beats" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (2 minutos):</strong> Introducir Big Beats. Proyectar Diapositiva 19 (Instrucciones y Diagrama).</td>
+                <td class="dialogue">
+                    "¡Iniciamos con la Táctica 5: <strong>Big Beats</strong>! Toda gran visión necesita una historia épica que muestre su verdadero poder transformador. Vamos a contar la historia más emocionante del impacto de su idea T-Bar. ¡Piensen a lo grande! ¡Imaginen el cambio MÁXIMO posible!"
+                    <br><br>
+                    "Usaremos una estructura simple de 3 actos:"
+                    <ul>
+                        <li><strong>1. Tensión MÁXIMA:</strong> El problema ODS que eligieron... ¡en su peor momento! Describe cómo sería el mundo si el problema empeorara muchísimo sin su solución. ¡Pinten un cuadro dramático!</li>
+                        <li><strong>2. Acción MÁXIMA:</strong> ¡Aquí entra su idea! ¿Cómo su solución con IA/Automatización (la que detallaron en el T-Bar) revoluciona la situación? ¿Qué hacen las personas con ella? ¡Describan el momento cumbre de la transformación!</li>
+                        <li><strong>3. Resolución MÁXIMA:</strong> ¡El final perfecto! ¿Cómo es el mundo ideal, transformado y mejorado gracias a su visión y a la tecnología IA/Auto? ¿Cómo cambió todo para bien? ¡Muestren la utopía alcanzada!</li>
+                    </ul>
+                </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 2 (11 minutos):</strong> Tiempo de trabajo en equipo para escribir la historia.</td>
+                 <td class="dialogue">
+                     "¡Ahora, a escribir esta historia épica! En su tablero Miro (o papel), describan estos 3 momentos clave, ¡exageren! Imaginen el máximo impacto positivo posible gracias a la IA o la automatización que propusieron. Conecten su T-Bar con esta narrativa de gran impacto. ¡Inspírennos!"
+                     <br><br>
+                     "Piensen: ¿Cuál es el cambio MÁS grande que su idea podría generar? ¿Cómo la IA/Auto es el héroe de esta historia? ¿Qué futuro increíble desbloquea?"
+                     <br><br>
+                    <i>(Circular activamente. Ayudarles a conectar su T-Bar con la narrativa. Animarles a ser audaces, visuales y a enfatizar el rol transformador de la tecnología (IA/Auto) en la 'Acción Máxima'. Fomentar el pensamiento a largo plazo y el impacto a gran escala).</i>
+                 </td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (2 minutos):</strong> Mostrar Ejemplo y Cierre. Proyectar Diapositiva 20 (Ejemplo MentorVivo).</td>
+                <td class="dialogue">
+                    "Miren el ejemplo de Big Beats para 'MentorVivo':"
+                    <ul>
+                        <li><strong>Tensión MAX (Mundo sin MentorVivo - 2035):</strong> Crisis educativa post-pandemia emocional. Ansiedad, fatiga mental, desconexión. Aulas frías, profes sobrepasados. Abandono escolar altísimo, especialmente en comunidades vulnerables. La escuela ya no es segura (emocional ni cognitivamente).</li>
+                        <li><strong>Acción MAX (Entra MentorVivo):</strong> Llega el tutor IA que escucha, siente, adapta y acompaña. Detecta tristeza, cansancio, confusión. Ofrece lecciones personalizadas, pausas, apoyo. Combina IA generativa con ciencia del bienestar (prompts afectivos, juegos, playlists). Miles de escuelas lo adoptan. Docentes lo usan como asistente emocional-educativo.</li>
+                        <li><strong>Resolución MAX (Mundo con MentorVivo - 2040):</strong> ¡La educación vuelve a ser humana! Aprendizaje personalizado, inclusivo, profundo. 98% terminan secundaria. Alumnos seguros, motivados, capaces. Profes son guías emocionales. La educación es más bella, más humana, más viva. ¡Gracias a un profe IA que no olvidó que somos personas!</li>
+                    </ul>
+                     "¡Pasaron de estudiantes retrasados y alterados a contentos y sanos! ¡Esa es una historia épica! Cuenten ustedes su propia historia."
+                    <br><br>
+                    <i>(Entregable: Historia de Impacto "Big Beats" (3 actos) por equipo).</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 3 -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('prototipado_conceptual')">
+        <div class="title">💡 Actividad 3: Táctica 7: Prototipado Conceptual (con IA Generativa) ⏰ Tiempo: 10 minutos</div>
+        <div class="subtitle">Planificar cómo usar IA Generativa para crear un prototipo conceptual simple de la idea.</div>
+    </div>
+    <div id="prototipado_conceptual" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (2 minutos):</strong> Introducir Prototipado Conceptual con IA. Proyectar Diapositiva 21 (Instrucciones).</td>
+                <td class="dialogue">
+                     "¡Genial esa historia épica! Ahora, ¿cómo podríamos mostrar un pedacito de esa visión del futuro rápidamente, sin construir todo el sistema? ¡Usando las herramientas de <strong>IA Generativa</strong> que conocemos! Vamos a planear un <strong>Prototipo Conceptual con IA</strong>."
+                     <br><br>
+                     "El objetivo es pensar cómo usar la IA (ChatGPT, Midjourney, etc.) para crear algo simple (un texto, una imagen, una simulación básica) que haga su visión más tangible y fácil de entender para otros. ¡Es un plan rápido!"
+                </td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (7 minutos):</strong> Planificación en equipo.</td>
+                 <td class="dialogue">
+                    "Discutan en equipo y anoten su plan en Miro (o papel):"
+                    <ol>
+                        <li><strong>¿Qué crear con IA?</strong> ¿Le pedirían a ChatGPT que escriba cómo hablaría su 'Eco-Conserje'? ¿Le pedirían a Midjourney que genere una imagen de su ciudad futura? ¿Simularían un análisis de datos simple que su IA haría? ¡Sean concretos!</li>
+                        <li><strong>¿Qué Prompt usarían (aproximado)?</strong> Escriban una idea rápida del prompt que le darían a la IA. No tiene que ser perfecto, solo la intención. (Ej: *'Genera imagen de edificio futurista con drones de mantenimiento, estilo eco-punk'* o *'Escribe un diálogo corto donde un usuario interactúa con MentorVivo cuando se siente ansioso'*).</li>
+                        <li><strong>¿Qué Herramienta IA?</strong> ¿Usarían ChatGPT, Midjourney, DALL-E, Stable Diffusion, otra?</li>
+                        <li><strong>¿Cómo lo presentarían?</strong> ¿En una diapositiva? ¿En un videíto corto mostrando la generación? ¿Leyendo el texto generado?</li>
+                    </ol>
+                     "¡Piensen rápido y práctico! ¿Cómo pueden usar la IA para dar una 'probadita' de su visión?"
+                     <br><br>
+                    <i>(Circular y ayudarles a conectar su idea T-Bar con una aplicación concreta de IA Generativa. Ayudarles a formular prompts iniciales. Recordarles las herramientas IA disponibles. El objetivo es el PLAN, no la ejecución ahora mismo).</i>
+                 </td>
+            </tr>
+             <tr>
+                <td><strong>PASO 3 (1 minuto):</strong> Cierre de la planificación.</td>
+                <td class="dialogue">
+                    "¡Perfecto! Ya tienen un plan para hacer su visión más tangible usando la IA. ¡Este plan de prototipado conceptual será clave para su presentación final!"
+                    <br><br>
+                    <i>(Entregable: Plan de Prototipado Conceptual con IA por equipo).</i>
+                 </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 4 -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('lanzamiento_visionario')">
+        <div class="title">🚀 Actividad 4: Táctica 6: Like, Wish, Wonder - Lanzamiento Visionario ⏰ Tiempo: 10 minutos</div>
+        <div class="subtitle">Presentar la visión completa (Big Beats + Proto Plan) y recibir retroalimentación LWW.</div>
+    </div>
+    <div id="lanzamiento_visionario" class="content">
+        <table>
+            <tr>
+                 <td><strong>PASO 1 (1 minuto):</strong> Introducir Lanzamiento y Feedback LWW. Proyectar Diapositiva 22.</td>
+                <td class="dialogue">
+                     "¡Creadores del futuro, llegó la hora del <strong>Lanzamiento Visionario</strong>! Es el momento de compartir su visión completa con sus compañeros. Cada equipo presentará:"
+                     <ol>
+                         <li><strong>Su emocionante historia de Impacto Máximo (Big Beats).</strong></li>
+                         <li><strong>Su plan inteligente para el Prototipo Conceptual con IA.</strong></li>
+                     </ol>
+                     "Tienen <strong>2-3 minutos</strong> para compartir su visión del futuro."
+                     <br><br>
+                     "Mientras un equipo presenta, los demás prepararán su retroalimentación usando la técnica <strong>Like, Wish, Wonder</strong> (Me Gusta, Desearía, Me Pregunto)."
+                </td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (7 minutos):</strong> Presentaciones de Equipos y Feedback LWW. Proyectar Diapositiva 24 (para guiar el feedback).</td>
+                <td class="dialogue">
+                    "¡Equipo 1, listos para presentar su visión del futuro con IA!"
+                    <br><br>
+                    <i>(Gestionar las presentaciones (2-3 min por equipo). Mientras presentan, recordar a los demás que preparen sus notas LWW en post-its físicos o digitales).</i>
+                    <br><br>
+                    "Ahora, mientras el siguiente equipo se prepara, los demás entreguen sus notas LWW al equipo que acaba de presentar. Recuerden dar ideas constructivas:"
+                    <ul>
+                        <li>👍 **Like (Me Gusta):** ¿Qué es lo que más les gustó de esa solución con IA y su historia de impacto? Algo que realmente les haya impresionado o inspirado. *(Ej. MentorVivo: "Me encantó cómo combinaron salud mental con educación...")*</li>
+                        <li>🌠 **Wish (Deseo):** Si pudieran desear algo para el futuro de esa solución IA, ¿qué sería? Un paso más allá, algo que les gustaría que pasara con esta idea en el mundo real. *(Ej. MentorVivo: "Desearía que pudiera funcionar sin conexión a internet...")*</li>
+                        <li>🤔 **Wonder (Me Pregunto):** ¿Qué pregunta les queda sobre la Solución IA? Algo que les gustaría seguir explorando o pensando. *(Ej. MentorVivo: "Me pregunto cómo harían para que no sea demasiado invasivo...")*</li>
+                    </ul>
+                    <i>(Continuar con las presentaciones y la entrega de feedback LWW hasta que todos los equipos hayan presentado. Leer la diapositiva 24 para guiar el feedback).</i>
+                </td>
+            </tr>
+             <tr>
+                 <td><strong>PASO 3 (2 minutos):</strong> Conclusión de presentaciones.</td>
+                <td class="dialogue">
+                    "¡Increíbles presentaciones! Han compartido visiones del futuro muy poderosas y planes inteligentes para empezar a hacerlas realidad con IA. Y el feedback LWW ayudará a refinar aún más estas ideas."
+                    <br><br>
+                    <i>(Entregable Parcial: Visiones (Big Beats + Prototipo IA) presentadas. Notas LWW recibidas por cada equipo).</i>
+                 </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Actividad 5 -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('cierre_final')">
+        <div class="title">🏁 Actividad 5: Cierre Final: ¡El Futuro es Ahora! ⏰ Tiempo: 2 minutos</div>
+        <div class="subtitle">Celebrar los logros, inspirar la continuación y cerrar el taller.</div>
+    </div>
+    <div id="cierre_final" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (1.5 minutos):</strong> Felicitaciones y Resumen Final. Proyectar Diapositiva 25.</td>
+                 <td class="dialogue">
+                     "¡¡¡FELICITACIONES, VISIONARIOS!!! Han completado la receta 'Visiones del Futuro'. Han explorado problemas reales, ideado soluciones con IA, conectado con necesidades humanas, contado historias épicas y planeado cómo mostrar sus ideas. ¡Han diseñado futuros posibles!"
+                     <br><br>
+                    "Este es solo el comienzo. Tienen las herramientas (¡especialmente su ingenio con IA Generativa!) y la visión para usar la tecnología como una fuerza para el bien. Han demostrado una creatividad y un pensamiento crítico impresionantes."
+                </td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0.5 minutos):</strong> Próximos Pasos y Despedida.</td>
+                <td class="dialogue">
+                    "¿Qué sigue? ¡Desarrollar ese prototipo conceptual! Usen las herramientas de IA que planearon para crear esa demostración tangible de su visión. ¡Pueden presentar un demo increíble al final del curso! El futuro no es algo que esperamos, ¡es algo que ustedes están construyendo AHORA!"
+                    <br><br>
+                    "¡Gracias por su increíble trabajo, por su imaginación desbordante y por atreverse a diseñar un futuro mejor! ¡Sigan explorando, sigan creando, sigan usando la IA para un mundo mejor! ¡El futuro es suyo!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- ------------------------------------------------- Fin Espacio para Actividades --------------------------------------------------------- -->
+
+</div>
+
+</body>
+</html>
